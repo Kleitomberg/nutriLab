@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 
     #myAps
     'autenticacao',
+    'core',
 ]
 
 MIDDLEWARE = [
