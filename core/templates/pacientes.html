@@ -21,22 +21,41 @@
 
 
 <br />
-<button
-  type="button"
-  class="btn btn-outline-success"
-  data-toggle="modal"
-  data-target="#modal"
->
-  Novo paciente
-</button>
-<div
-  class="modal fade"
-  id="modal"
-  tabindex="-1"
-  role="dialog"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
+
+<button type="button"  class="btn btn-outline-success"  data-toggle="modal"  data-target="#modal">
+  Novo paciente </button>
+
+
+
+<!-- list de pacientes-->
+
+<br>
+<br>
+<div class="row">
+{% for paciente in pacientes %}
+    <div class="col-md-4">
+    <a href="#" class="link-hover">
+        <div class="card-paciente">
+            <div class="foto-perfil">
+            {% if paciente.sexo == 'F' %}
+                <img src="{% static 'core/img/perfil1.png' %}">
+            {% else %}
+              <img src="{% static 'core/img/perfil2.png' %}">
+            {% endif %}
+            </div>
+            <br>
+            <p class="dados">{{paciente.nome}}</p>
+            <p class="dados">{{paciente.idade}}</p>
+        </div>
+    </a>
+    </div>
+{% endfor %}
+</div>
+
+
+
+<!-- Modal-->
+<div  class="modal fade"  id="modal"  tabindex="-1"  role="dialog"  aria-labelledby="exampleModalLabel"  aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -109,7 +128,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> <!--fim do modal-->
 
 {% endblock%}
 {% block 'reveal' %}
