@@ -2,6 +2,7 @@ from asyncio.windows_events import NULL
 import re
 from django.contrib import messages
 from django.contrib.messages import constants
+from django.contrib.auth.models import User
 
 #email
 
@@ -49,7 +50,15 @@ def email_is_valid(request, email):
 
     return True
 
+
+
+
 def username_is_valid(request, username):
+    user = User.objects.filter(username=username)
+
+    if user.exists():
+        messages.add_message(request, constants.ERROR, 'Já existe um USUARIO com esse Nome')
+        return False
 
     if len(username) <= 0 or username == NULL or  username == None or username =="":
         messages.add_message(request, constants.ERROR,'O Campo username é obrigatorio!')
