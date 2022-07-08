@@ -14,6 +14,8 @@ from django.contrib import auth
 
 def cadastro(request):    
     if request.method == "GET":
+        if request.user.is_authenticated:
+            return redirect('/')
         return render(request, 'cadastro.html')
 
     elif request.method == "POST":
@@ -44,6 +46,9 @@ def cadastro(request):
 
 def logar(request):
     if request.method == "GET":
+        if request.user.is_authenticated:
+            return redirect('/')
+        
         return render(request, 'logar.html')
     
     elif request.method == 'POST':
@@ -59,3 +64,8 @@ def logar(request):
         else:
             auth.login(request, usuario)
             return redirect('/')
+
+
+def sair(request):
+    auth.logout(request)
+    return redirect('/auth/login')

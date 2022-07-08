@@ -6,4 +6,5 @@ from .views import *
 urlpatterns = [
     path('cadastro/', cadastro, name="cadastro"),
     path('login/', logar, name="login"),
+    path("sair/", sair, name="sair")
 ]
