@@ -1,14 +1,20 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 from django.urls import reverse_lazy, reverse
-from .utils import password_is_valid, email_is_valid, username_is_valid
-
+from .utils import password_is_valid, email_is_valid, username_is_valid, email_html
 from django.contrib import messages
 from django.contrib.messages import constants
 
 from django.contrib.auth.models import User
 
+from hashlib import sha256
+
+from .models import Ativacao
+
 from django.contrib import auth
+
+import os
+from django.conf import settings
 
 # Create your views here.
 
@@ -32,8 +38,17 @@ def cadastro(request):
                 email=email,
                 password=senha,
                 is_active=False)
-
+            
             user.save()
+            token = sha256(f'{username}{email}'.encode() ).hexdigest()
+            ativacao = Ativacao(token=token, user=user)
+            ativacao.save()
+
+            #send email
+            path_template = os.path.join(settings.BASE_DIR, 'autenticacao/templates/emails/email_activated.html')
+            email_html(path_template, 'Cadastro confirmado', [email,], username=username, link_ativacao="127.0.0.1:8000/auth/ativar_conta/{token}")
+
+
             messages.add_message(request, constants.SUCCESS, 'Usuario  cadastrado com sucesso!')
             return redirect('/auth/login')
         except:
@@ -68,4 +83,19 @@ def logar(request):
 
 def sair(request):
     auth.logout(request)
+    return redirect('/auth/login')
+
+def ativar_conta(request, token):
+    token = get_object_or_404(Ativacao, token=token)
+
+    if token.ativo:
+        messages.add_message(request, constants.WARNING, 'Essa token já foi usado')
+        return redirect('/auth/login')
+
+    user = User.objects.get(username=token.user.username)
+    user.is_active = True
+    user.save()
+    token.ativo = True
+    token.save()
+    messages.add_message(request, constants.SUCCESS, 'Conta ativa com sucesso')
     return redirect('/auth/login')
