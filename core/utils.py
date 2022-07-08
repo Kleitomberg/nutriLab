@@ -21,3 +21,11 @@ def paciente_is_valid(request, email, nome, idade, telefone, sexo):
         return False
 
     return True
+
+def paciente_dados_is_valid(request, peso,altura,gordura,musculo,hdl,ldl,colesterol_total,trigliceridios):
+    
+    
+    
+
+    return True
+

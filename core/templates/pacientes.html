@@ -3,7 +3,7 @@
  {% block plataforma %}
 
 
-       {% block msg %}
+    {% block msg %}
     {% if messages %}
         <br>
         {% for message in messages %}
@@ -34,7 +34,7 @@
 <div class="row">
 {% for paciente in pacientes %}
     <div class="col-md-4">
-    <a href="#" class="link-hover">
+    <a href="{% url 'paciente_dados' paciente.id %}" class="link-hover">
         <div class="card-paciente">
             <div class="foto-perfil">
             {% if paciente.sexo == 'F' %}
@@ -45,7 +45,9 @@
             </div>
             <br>
             <p class="dados">{{paciente.nome}}</p>
-            <p class="dados">{{paciente.idade}}</p>
+            <p class="dados">{{paciente.idade}} Anos</p>
+            <p class="dados">{{paciente.email}}</p>
+
         </div>
     </a>
     </div>
