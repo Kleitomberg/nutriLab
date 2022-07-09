@@ -55,10 +55,25 @@
 
 }
 
+.bg-danger.d-flex.flex-row-reverse {
+    border-radius: 8px;
+}
+
+.bg-danger.d-flex.flex-row-reverse a{
+    font-size: 16px;
+}
 
 @media (max-width: 1300px) {
     .descricao {
         margin-left: 1px;
     }
 }
+
+@media (min-width: 992px){
+.navbar-expand-lg {
+    -ms-flex-flow: row nowrap;
+    flex-flow: row nowrap;
+    -ms-flex-pack: start;
+    justify-content: space-between !important;
+}}
 

@@ -13,4 +13,5 @@ urlpatterns = [
     path('refeicao/<int:id_paciente>/',refeicao, name="refeicao"),
     path('opcao/<str:id_paciente>/', opcao, name="opcao"),
     path('grafico_peso/<int:id>/', grafico_peso, name="grafico_peso"),
+    path('export_refeicoes/', export_refeicoes, name="export_refeicoes"),
 ]
