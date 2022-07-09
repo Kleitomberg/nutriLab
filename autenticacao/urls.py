@@ -8,6 +8,7 @@ urlpatterns = [
     path('login/', logar, name="login"),
     path("sair/", sair, name="sair"),
     path('ativar_conta/<str:token>/', ativar_conta, name="ativar_conta"),
+    
 
 
 ]

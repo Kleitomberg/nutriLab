@@ -4,6 +4,7 @@
 
  {% block head %}
 <link rel="stylesheet" href="{% static 'core/css/core.css' %}" />
+<link rel="stylesheet" href="{% static 'core/css/plano_alimentar.css' %}">
 {% endblock %}
 
  {% block conteudo %}
@@ -31,7 +32,7 @@
           <h3>Dados dos Pacientes</h3>
         </div>
       </a>
-      <a href="#" class="link-lateral">
+      <a href="{%url 'plano_alimentar_listar'%}" class="link-lateral">
         <div class="card-lateral">
           <img src="{% static 'core/img/plano_alimentar.png' %}" />
           <br />

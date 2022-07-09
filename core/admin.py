@@ -5,3 +5,5 @@ from .models import *
 
 admin.site.register(Pacientes)
 admin.site.register(DadosPaciente)
+admin.site.register(Refeicao)
+admin.site.register(Opcao)
