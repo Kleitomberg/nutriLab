@@ -26,8 +26,8 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 👨‍💻 Como iniciar projeto
 
-  -FAÇA CLONE DO PROJETO
-  -CRIE O SEU AMBIENTE VIRTUAL
-  -Instale os requirements
-  -Rode as migrations e migrate
+ - FAÇA CLONE DO PROJETO
+ - CRIE O SEU AMBIENTE VIRTUAL
+ - Instale os requirements
+ - Rode as migrations e migrate
   
